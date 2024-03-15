@@ -1,0 +1,13 @@
+trtexec --onnx=fcn-resnet50-12.onnx \
+--fp16 \
+--minShapes=input:1x3x256x256 \
+--optShapes=input:1x3x720x1280 \
+--maxShapes=input:1x3x1440x2560 \
+--buildOnly \
+--saveEngine=fcn-resnet50-12-fp16.engine
+
+--workspace=128 \
+
+trtexec \
+--shapes=input:1x3x720x1280 \
+--loadEngine=fcn-resnet50-12-fp16.engine
